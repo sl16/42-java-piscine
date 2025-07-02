@@ -33,18 +33,23 @@ public class Program {
 		else
 			scaledStep = 1;
 
+		System.out.printf("top ten frequency length: %d\n", topTenFrequency.length);
+
 		for (int i = 0; i < 10; i++) {
-			for (int j = 0; j < 10; j++) {
-				if (topTenFrequency[j] >= maxFrequency - (i * scaledStep))
+			for (int j = 0; j < topTenFrequency.length; j++) {
+				if (topTenFrequency[j] == 0)
+					System.out.printf("  ");
+				else if (topTenFrequency[j] >= maxFrequency - (i * scaledStep))
 					System.out.printf("# ");
 				else
-					System.out.printf("  ");
+					System.out.printf(" ");
 			}
 			System.out.printf("\n");
 		}
 		
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < topTenChars.length; i++)
 			System.out.printf("%c ", topTenChars[i]);
+		System.out.println();
 	}
 
 	private static void findTopTen() {
@@ -56,9 +61,10 @@ public class Program {
 			int index = -1;
 
 			for (int j = 0; j < frequency.length; j++) {
-				if (frequency[j] > highest)
+				if (frequency[j] > highest) {
 					highest = frequency[j];
 					index = j;
+				}
 			}
 
 			if (index != -1) {
